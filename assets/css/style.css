@@ -1,0 +1,175 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Declaring variables */
+:root {
+    --primary-color : #F8F8F8;
+    --secondary-color : #4E4E4C;
+    --accent-color : #609966;
+    --blue: #09a9ed;
+    --darkblue: #019adc;
+    --lightgreen: #a3d116;
+    --pink: #ec4a9d;
+    --orange: #ff9b01;
+    --green: #2cc6ab;
+    --purple: #ab5de6;
+    --text: #75767a;
+    --checkbox: #09a9ed;
+}
+
+body {
+    background-color: #0d6efd;
+    display: flex;
+    justify-content: center;
+}
+
+main {
+    width: 450px;
+    background-color: white;
+    margin-top: 40px;
+    border-radius: 2px;
+}
+
+#header-container {
+    padding: 15px;
+}
+
+/** 
+* Todo Input 
+**/
+#Todo-input {
+    border-radius: 2px;
+    border: 1px solid #dedede;
+    padding: 15px;
+}
+
+/*** Description Container ***/
+#description-container #description-content input {
+    width: 100%;
+    font-size: 0.85em;
+
+}
+
+/*** Category Duedate Container ***/
+#category-duedate-container{
+    display: flex;
+    width: 100%;
+}
+
+/* category-container */
+#category-select-container #choose-category select {
+    width: 100%;
+    font-size: 0.85rem;
+}
+
+#category-select-container {
+    width: 50%;
+    padding-right: 5px;
+}
+
+/* Date Container */
+
+#date-container {
+    width: 50%;
+    padding-left: 5px;
+}
+
+#date-container input{
+    width: 100%;
+    font-size: 0.85rem;
+}
+
+/*** Add  Task ***/
+button{
+    background-color: var(--blue);
+    color: white;
+    border: none;
+    width: 100%;
+    padding: 10px 0;
+    border-radius: 2px;
+    letter-spacing: 1px;
+    font-size: 1.05rem;
+}
+
+button:hover {
+    background-color: var(--darkblue);
+}
+
+/* TODO INPUT */
+
+/* green - 16a3b7 */
+/* red - db3345 */
+/* yellow- ffc015 */
+/* grey - 6e7479 */
+/* light grey - dedede */
+/* Black - 232428 */
+
+
+
+
+/* TODO DISPLAY */
+
+#display-todo {
+    padding: 15px;
+}
+
+/* Todo Container */
+.todo-list-container {
+    display: flex;
+    list-style: none;
+    justify-content: space-between;
+}
+
+.todo-list-container .checkbox-desc-container {
+    display: flex;
+}
+
+.category-container p {
+    background-color: var(--green);
+    padding: 7px 15px;
+    border-radius: 2px;
+    color: white;
+    /* text-transform: capitalize; */
+}
+
+
+
+
+/* Common CSS */
+
+.pd-bt {
+    padding-bottom: 15px;
+}
+
+li {
+    list-style: none;
+}
+
+input {
+    border : 0;
+    outline : 0;
+    background-color: transparent;
+    border-bottom : 1px solid #000;
+    padding-left: 10px;
+    height: 30px;
+    margin-bottom: 20px;
+}
+
+select {
+    border : 0;
+    outline : 0;
+    background-color: transparent;
+    border-bottom : 1px solid #000;
+    height: 30px;
+    padding-left: 10px;
+}
+
+i {
+    color: #fff;
+    margin-right: 10px;
+}

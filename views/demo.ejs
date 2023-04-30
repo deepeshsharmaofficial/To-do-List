@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <title><%= title%></title>
+  </head>
+  <body>
+    <div class="main-container">
+      <div class="title">TODO App</div>
+      <hr />
+      <form action="/addTask" method="POST">
+        <div class="input_field">
+          <div class="label">DESCRIPTION</div>
+          <input
+            type="text"
+            name="data"
+            placeholder="What do you need to do?"
+            required
+          />
+        </div>
+        <hr />
+        <div class="option_date">
+          <div class="category-container">
+            <div class="label">CATEGORY</div>
+            <select name="category" id="category_id" required>
+              <option value="">Select your option</option>
+              <option value="College">College</option>
+              <option value="Placement Prep">Placement Prep</option>
+              <option value="Personal">Personal</option>
+            </select>
+          </div>
+          <div class="date-container">
+            <div class="label">DATE</div>
+            <input type="date" name="date" id="date_id" required />
+          </div>
+        </div>
+        <hr />
+        <div class="btns">
+          <button class="btn add" type="submit">
+            <i class="fa-sharp fa-solid fa-plus"></i> &nbsp; Add Task
+          </button>
+          <button class="btn delete">
+            <a href="/deleteTask"
+              ><i class="fa-solid fa-trash-can"></i> &nbsp; Delete Tasks</a
+            >
+          </button>
+        </div>
+      </form>
+
+      <ul id="list">
+        <% for (let i of task_list) { %>
+        <li class="list-items">
+          <div class="label_date">
+            <div class="label">
+              <!-- Yeh wala -->
+              <input type="checkbox" id="<%= i.id%>" data-id="<%= i.id%>"
+              class="custom-checkbox" <%= i.checked?"checked":"" %> />
+              <label for="<%= i.id%>"><%= i.data%></label>
+            </div>
+
+            <div class="date">
+              <i class="fa-regular fa-calendar-days"></i>
+              <%= i.date.toDateString()%>
+            </div>
+          </div>
+          <div
+            class="category <%= i.category.toLowerCase().replaceAll(' ', '_') %>"
+          >
+            <%= i.category%>
+          </div>
+        </li>
+        <% } %>
+      </ul>
+    </div>
+
+    <script
+      src="https://kit.fontawesome.com/15628b64e5.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <script>
+      // Yeh wala
+      //Here the Check function getting handeled
+
+      //Creating an from to send post request to the server
+      function postForm(path, params, method) {
+        method = method || "post";
+
+        //Setteing up the form's Action and Method which recieved from the function call
+        var form = document.createElement("form");
+        form.setAttribute("method", method);
+        form.setAttribute("action", path);
+
+        console.log(path);
+        document.body.appendChild(form);
+        //Submitting thr form to simulate Post request to the server
+        form.submit();
+      }
+
+      //Listing for click in the whole Document
+      document.addEventListener("click", (e) => {
+        //using event delicationngettig the id and calling post from to POST a request
+        if (e.target.classList.contains("custom-checkbox")) {
+          postForm(`/checkTask/${e.target.id}`, { arg1: `${e.target.id}` });
+        }
+      });
+    </script>
+  </body>
+</html>
