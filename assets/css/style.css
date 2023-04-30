@@ -9,7 +9,6 @@
 /* Declaring variables */
 :root {
     --primary-color : #F8F8F8;
-    --secondary-color : #4E4E4C;
     --accent-color : #609966;
     --blue: #09a9ed;
     --darkblue: #019adc;
@@ -18,11 +17,14 @@
     --orange: #ff9b01;
     --green: #2cc6ab;
     --purple: #ab5de6;
-    --text: #75767a;
+    --text : #4E4E4C;
+    --secondary-text: #75767a;
+    --text2: #dedede;
     --checkbox: #09a9ed;
 }
 
 body {
+    /* background-image: linear-gradient(#0d6efd, var(--blue)); */
     background-color: #0d6efd;
     display: flex;
     justify-content: center;
@@ -33,6 +35,7 @@ main {
     background-color: white;
     margin-top: 40px;
     border-radius: 2px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
 #header-container {
@@ -51,8 +54,7 @@ main {
 /*** Description Container ***/
 #description-container #description-content input {
     width: 100%;
-    font-size: 0.85em;
-
+    font-size: 0.85rem;
 }
 
 /*** Category Duedate Container ***/
@@ -72,6 +74,14 @@ main {
     padding-right: 5px;
 }
 
+#choose-category select{
+    color: var(--text);
+}
+
+#select-date input {
+    color: var(--text);
+}
+
 /* Date Container */
 
 #date-container {
@@ -84,7 +94,10 @@ main {
     font-size: 0.85rem;
 }
 
-/*** Add  Task ***/
+/**
+* Add  Task 
+**/
+
 button{
     background-color: var(--blue);
     color: white;
@@ -99,18 +112,6 @@ button{
 button:hover {
     background-color: var(--darkblue);
 }
-
-/* TODO INPUT */
-
-/* green - 16a3b7 */
-/* red - db3345 */
-/* yellow- ffc015 */
-/* grey - 6e7479 */
-/* light grey - dedede */
-/* Black - 232428 */
-
-
-
 
 /* TODO DISPLAY */
 
@@ -134,11 +135,21 @@ button:hover {
     padding: 7px 15px;
     border-radius: 2px;
     color: white;
-    /* text-transform: capitalize; */
 }
 
+.checkbox-container {
+    margin-right: 10px;
+}
 
+.task-description {
+    color: var(--text);
+    font-size: 1.05rem;
+}
 
+.due-date {
+    color: var(--secondary-text);
+    font-size: 0.85rem;
+}
 
 /* Common CSS */
 
@@ -154,7 +165,7 @@ input {
     border : 0;
     outline : 0;
     background-color: transparent;
-    border-bottom : 1px solid #000;
+    border-bottom : 1px solid var(--text);
     padding-left: 10px;
     height: 30px;
     margin-bottom: 20px;
@@ -164,12 +175,7 @@ select {
     border : 0;
     outline : 0;
     background-color: transparent;
-    border-bottom : 1px solid #000;
+    border-bottom : 1px solid var(--text);
     height: 30px;
     padding-left: 10px;
-}
-
-i {
-    color: #fff;
-    margin-right: 10px;
 }

@@ -22,25 +22,7 @@ app.use(express.urlencoded());
 // using static files
 app.use(express.static('./assets'));
 
-// var taskList = [
-//     {
-//         description: 'get vegetable',
-//         category: 'Personal',
-//         date: '24/09/2022'
-//     },
-//     {
-//         description: 'get vegetable',
-//         category: 'Personal',
-//         date: '24/09/2022'
-//     },
-//     {
-//         description: 'get vegetable',
-//         category: 'Personal',
-//         date: '24/09/2022'
-//     }
-// ]
-
-
+// rendering the App Page
 app.get('/', function(req, res){
     Task.find({}, function(err, task){
         if(err){
@@ -58,8 +40,7 @@ app.post('/create-task', function(req, res){
     Task.create({
         description: req.body.description,
         category: req.body.category,
-        date: req.body.date,
-        done: req.body.done
+        date: req.body.date
     }, function(err, newTodo){
         if(err) {
             console.log('Error in creating a Todo List', err);
@@ -70,20 +51,20 @@ app.post('/create-task', function(req, res){
     })
 });
 
-app.get('/delete-task', function(req, res){
-    console.log("c------->", req.query);
-    let id = req.query;
+// deleting Tasks
+app.get('/delete-task', function (req, res) {
+    // get the id from query
+    var id = req.query;
+    // checking the number of tasks selected to delete
     var count = Object.keys(id).length;
-
-    for(let i = 0; i < count; i++) {
-        console.log('I want to delete this --->', Object.keys(id)[i]);
-        Task.findByIdAndDelete(Object.keys(id)[i], function(err) {
-            if (err){
-                console.log(err)
+    for (let i = 0; i < count; i++) {
+        // finding and deleting tasks from the DB one by one using id
+        Task.findByIdAndDelete(Object.keys(id)[i], function (err) {
+            if (err) {
+                console.log('error in deleting task');
             }
         })
     }
-    
     return res.redirect('back');
 });
 

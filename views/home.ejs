@@ -1,22 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Linking StyleSheet -->
-    <link rel="stylesheet" href="/css/checkbox.css">
-    <link rel="stylesheet" href="/css/style.css">
-    
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Linking icon -->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-
+    
+    <!-- Linking StyleSheet -->
+    <link rel="stylesheet" href="/css/style.css">
+    
     <title>
         <%= locals.title %>
     </title>
-
 </head>
 <body>
+    <!-- Main -->
     <main>
+        <!-- Header -->
         <header>
             <div id="header-container">
                 <h1>TODO<span style="color: var(--blue);">.</span> </h1>
@@ -24,18 +26,23 @@
         </header>
 
         <div id="Todo-input">
+            <!-- Form for creating Todo -->
             <form action="/create-task" method="post">
+
+                <!-- Description Container -->
                 <div id="description-container" class="pd-bt">
                     <div id="description-content">
                         <input type="text" name="description" placeholder="What do you need to do ?" required>
                     </div>
                 </div>
 
+                <!-- Category and Due Date Container -->
                 <div id="category-duedate-container" class="pd-bt">
+                    <!-- Select Category -->
                     <div id="category-select-container">
-                        
                         <div id="choose-category">
                             <select name="category" id="" placeholder="choose a category">
+                                <option disabled>Select Category</option>
                                 <option value="personal">Personal</option>
                                 <option value="work">Work</option>
                                 <option value="school">School</option>
@@ -43,7 +50,7 @@
                             </select>
                         </div>
                     </div> 
-
+                    <!-- Due Date -->
                     <div id="date-container">
                         <div id="select-date">
                             <input type="date" name="date" id="" placeholder="dd-mm-yyyy" required>
@@ -51,83 +58,53 @@
                     </div>
                 </div>
 
+                <!-- Create Task Button -->
                 <div id="add-task" class="pd-bt">
                     <button type="submit"><i class='bx bx-plus'></i>Create Task</button>
                 </div>
-
             </form>
         </div>
 
+        <!-- Display Todo Container -->
         <div id="display-todo">
-            <form action="/delete-task" method="get" name="delete-task">
-                <div>    
-                    <ul>
-                        <!-- 
-                            Tick    Description
-                            date    Category
-                        -->
-                        <% for(let i of task_list) { %>
-                            <div class="todo-list-container pd-bt">
-                                <div class="checkbox-desc-container">
-                                
-                                    <div class="checkbox-container">
-                                        <input type="checkbox" name=" <%= i.id %> " class="checkboxs">
-                                    </div>
-                                    
-<!-- 
-                                    <div class="checkbox-wrapper-15">
-                                        <input class="inp-cbx" name=" <%= i.id %> " id="<%= i.id %>" type="checkbox" style="display: none;"/>
-                                       
-                                        <label class="cbx" for="<%= i.id %>">
-                                          <span>
-                                            <svg width="12px" height="9px" viewbox="0 0 12 9">
-                                              <polyline points="1 5 4 8 11 1"></polyline>
-                                            </svg>
-                                          </span>
-                                          <span>
-                                            <ul>
-                                                <li>
-                                                    <p> <%= i.description %> </p>
-                                                </li>
-                                                <li>
-                                                    <p> <%= i.date %> </p>
-                                                </li>
-                                            </ul>
-                                          </span>
-                                        </label>
-                                    </div>
-                                     -->
-                                    
-                                    <div class="desc-date">
-                                        <ul>
-                                            <li>
-                                                <p id="task-description"> <%= i.description %> </p>
-                                            </li>
-                                            <li>
-                                                <p id="due-date"> <%= i.date %> </p>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                   
-
+            <!-- Form for Deleting todo & Display Todo -->
+            <form action="/delete-task" method="GET">
+                <ul>
+                    <% for(let i of task_list) { %>
+                        <li class="todo-list-container pd-bt">
+                            <div class="checkbox-desc-container checkbox-wrapper-18">
+                                <!-- checkbox -->
+                                <div class="checkbox-container">
+                                    <input type="checkbox" name="<%= i._id %>">
                                 </div>
-                                <div class="category-container">
-                                    <p data-color="<%= i.category %>"> <%= i.category %> </p>
-                                </div>
+                                <!-- description and duedate container -->
+                                <div class="desc-date">
+                                    <p class="task-description">
+                                        <%= i.description %>                            
+                                    </p>
+                                    <p class="due-date">
+                                        <%= i.date.getDate() + '-' + i.date.getMonth() + '-' + i.date.getFullYear() %>
+                                    </p>
+                                </div>    
                             </div>
-                        <% } %>
-                    </ul>
-                    <div id="delete-tasks">
-                        <button type="submit"><i class='bx bx-trash'></i>Delete Task</button>
-                    </div>
+                            <!-- category container -->
+                            <div class="category-container">
+                                <p data-color="<%= i.category %>"> <%= i.category %> </p>
+                            </div>
+                        </li>
+                    <% } %>
+                </ul>
+                <!-- Delete task button -->
+                <div id="delete-tasks">
+                    <button type="submit"><i class='bx bx-trash'></i>Delete Task</button>
                 </div>
             </form>
         </div>
-        
     </main>
+    <!-- linking Jquery -->
     <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
+    <!-- linking external javascript -->
     <script src="/js/check.js"></script>
-
 </body>
 </html>
 

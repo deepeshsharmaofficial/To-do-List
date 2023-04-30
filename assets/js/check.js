@@ -1,13 +1,4 @@
-var checkboxs = document.querySelectorAll('.checkboxs')
-
-function check() {
-    for(let i = 0; i < checkboxs.length; i++) {
-        if(checkboxs[i].checked == true) {
-            // console.log(checkboxs[i]);
-        }
-    }
-}
-
+// javascript for diffrent color for different category
 var pList= document.querySelectorAll(".category-container p");
 
 for (var i = 0; i <= pList.length; i++) {
@@ -27,4 +18,3 @@ for (var i = 0; i <= pList.length; i++) {
         pList[i].style.backgroundColor = "var(--purple)";
     }
 }
-
